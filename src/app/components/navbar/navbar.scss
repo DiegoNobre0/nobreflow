@@ -1,0 +1,148 @@
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 60px;
+  background: rgba(15, 17, 23, .7);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 107, 43, .1);
+  transition: background var(--transition), box-shadow var(--transition);
+}
+
+nav.scrolled {
+  background: rgba(10, 13, 19, .97);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, .3);
+}
+
+.nav-logo a {
+  display: flex;
+  align-items: center;
+}
+.logo-img {
+  height: 38px; /* Ajuste esse valor se quiser a logo maior ou menor */
+  width: auto;
+  display: block;
+  border-radius: 4px; /* Suaviza levemente as bordas da imagem, opcional */
+}
+
+.nav-logo span {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.nav-logo strong {
+  color: var(--orange);
+}
+
+.nav-links {
+  display: flex;
+  gap: 36px;
+}
+
+.nav-links a {
+  font-size: .82rem;
+  font-weight: 500;
+  color: var(--muted);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  transition: color var(--transition);
+}
+
+.nav-links a:hover {
+  color: var(--orange);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.nav-actions .btn-outline,
+.nav-actions .btn-primary {
+  padding: 9px 20px;
+  font-size: .8rem;
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.hamburger span {
+  width: 24px;
+  height: 2px;
+  background: var(--orange);
+  border-radius: 2px;
+  transition: all .3s;
+  display: block;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+@media (max-width: 900px) {
+  nav {
+    padding: 16px 24px;
+    flex-wrap: wrap;
+  }
+
+  .nav-links,
+  .nav-actions {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .nav-links.show,
+  .nav-actions.show {
+    display: flex;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+}
+
+/* Estilo para o link ativo (ScrollSpy) */
+.nav-links a {
+  position: relative;
+}
+.nav-links a.active {
+  color: var(--orange);
+}
+.nav-links a.active::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--orange);
+  border-radius: 2px;
+}

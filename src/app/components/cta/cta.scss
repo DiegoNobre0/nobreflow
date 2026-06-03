@@ -1,0 +1,141 @@
+.cta {
+    background: var(--black-mid);
+    padding: 100px 60px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 80px;
+}
+
+.cta-text small {
+    font-size: .8rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    display: block;
+    margin-bottom: 12px;
+}
+
+.cta-text h2 {
+    font-family: var(--font-display);
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    font-weight: 800;
+    text-transform: uppercase;
+    line-height: 1.05;
+    margin-bottom: 16px;
+}
+
+.cta-text h2 span {
+    color: var(--orange);
+}
+
+.cta-text p {
+    font-size: .9rem;
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 420px;
+    margin-bottom: 36px;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.cta-visual {
+    flex-shrink: 0;
+}
+
+.cta-card { 
+  background: var(--black); 
+  border: 1px solid rgba(255,107,43,.25); 
+  border-radius: var(--radius); 
+  padding: 28px 20px; /* Reduzi o padding lateral para telas menores */
+  width: 100%; 
+  max-width: 320px; /* Impede que ele cresça ou vaze do grid pai */
+  box-sizing: border-box; /* Garante que o padding não adicione largura extra */
+  margin: 0 auto; 
+}
+
+.cta-card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, .06);
+}
+
+.cta-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: var(--orange);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-size: .8rem;
+    font-weight: 800;
+    color: #fff;
+    flex-shrink: 0;
+}
+
+.cta-card-title {
+    font-size: .9rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 2px;
+}
+
+.cta-card-sub {
+    font-size: .75rem;
+    color: var(--muted);
+}
+
+.cta-metrics { 
+  display: grid; 
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 8px; /* Reduzi o gap para as métricas caberem perfeitamente */
+}
+.cta-metric { 
+  text-align: center; 
+  background: rgba(255,107,43,.06); 
+  border-radius: 10px; 
+  padding: 14px 4px; 
+  word-wrap: break-word; /* Se o texto for muito grande, ele desce pra linha de baixo sem vazar */
+}
+.metric-value { 
+  display: block; 
+  font-family: var(--font-display); 
+  font-size: clamp(1rem, 4vw, 1.2rem); /* Tamanho de fonte fluido */
+  font-weight: 800; 
+  color: var(--orange); 
+  line-height: 1; 
+  margin-bottom: 4px; 
+}
+.metric-label { 
+  display: block; 
+  font-size: .6rem; /* Fonte levemente reduzida para não quebrar layout */
+  color: var(--muted); 
+  text-transform: uppercase; 
+  letter-spacing: .06em; 
+}
+
+@media (max-width: 900px) {
+    .cta {
+        grid-template-columns: 1fr;
+        padding: 70px 24px;
+        gap: 40px;
+        text-align: center;
+    }
+
+    .cta-buttons {
+        justify-content: center;
+    }
+
+    .cta-visual {
+        margin: 0 auto;
+    }
+}

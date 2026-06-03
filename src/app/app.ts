@@ -1,12 +1,22 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component } from '@angular/core';
+import { NavbarComponent } from './components/navbar/navbar';
+import { HeroComponent } from './components/hero/hero';
+import { HowItWorksComponent } from './components/how-it-works/how-it-works';
+import { FeaturesComponent } from './components/features/features';
+import { TestimonialsComponent } from './components/testimonials/testimonials';
+import { PricingComponent } from './components/princing/princing';
+import { CtaComponent } from './components/cta/cta';
+import { Footer } from "./components/footer/footer";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
-  templateUrl: './app.html',
-  styleUrl: './app.scss'
+  standalone: true,
+  imports: [
+    NavbarComponent, HeroComponent, HowItWorksComponent,
+    FeaturesComponent, TestimonialsComponent, PricingComponent,
+    CtaComponent,
+    Footer
+],
+  templateUrl: './app.html'
 })
-export class App {
-  protected readonly title = signal('nobreflow');
-}
+export class AppComponent {}

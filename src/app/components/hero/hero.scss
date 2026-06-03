@@ -1,0 +1,442 @@
+/* ================= CONTAINERS BASE ================= */
+.hero {
+  background: var(--black);
+  min-height: 100vh;
+  padding: 140px 60px 80px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: .4;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  right: -120px;
+  top: -120px;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  border: 80px solid rgba(255, 107, 43, .05);
+  pointer-events: none;
+}
+
+.hero-container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+/* ================= TEXTOS DA ESQUERDA ================= */
+.hero-intro .greeting {
+  font-size: .85rem;
+  color: var(--orange);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+.hero-intro h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 5vw, 5rem);
+  font-weight: 800;
+  line-height: .95;
+  text-transform: uppercase;
+}
+
+.hero-intro h1 .accent {
+  color: var(--orange);
+}
+
+.hero-wavy {
+  display: block;
+  width: 160px;
+  margin: 18px 0 14px;
+}
+
+.hero-subtitle {
+  font-size: 1rem;
+  color: #fff;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.hero-description {
+  font-size: .9rem;
+  color: var(--muted);
+  line-height: 1.7;
+  max-width: 420px;
+  margin-bottom: 8px;
+}
+
+.hero-cta-group {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 32px;
+}
+
+/* Status */
+.hero-stats {
+  display: flex;
+  gap: 24px;
+  margin-top: 48px;
+  text-align: left;
+  align-items: center;
+}
+
+.stat-item p {
+  font-size: .7rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  margin-bottom: 4px;
+}
+
+.stat-item h2 {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--orange);
+}
+
+.stat-divider {
+  width: 1px;
+  height: 30px;
+  background: rgba(255, 107, 43, .2);
+}
+
+/* ================= COMPOSIÇÃO VISUAL (DIREITA) ================= */
+.hero-composition {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  /* Empurra o dashboard para a esquerda da coluna */
+  min-height: 450px;
+}
+
+.hero-glow-bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 300px;
+  background: var(--orange);
+  border-radius: 50%;
+  opacity: .15;
+  filter: blur(80px);
+  z-index: 0;
+}
+
+/* DASHBOARD (Atrás) */
+.comp-dashboard {
+  position: relative;
+  z-index: 1;
+  width: 85%;
+  /* Ocupa 85% para sobrar espaço pro celular */
+  background: var(--black-mid);
+  border-radius: 16px;
+  border: 1.5px solid rgba(255, 107, 43, .2);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, .5);
+  overflow: hidden;
+}
+
+.dash-header {
+  background: var(--black-dark);
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, .05);
+}
+
+.dash-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.dash-dots span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.dash-dots span:nth-child(1) {
+  background: #FF5F56;
+}
+
+.dash-dots span:nth-child(2) {
+  background: #FFBD2E;
+}
+
+.dash-dots span:nth-child(3) {
+  background: #27C93F;
+}
+
+.dash-title {
+  flex: 1;
+  text-align: center;
+  font-size: .7rem;
+  color: var(--muted);
+  font-weight: 500;
+  padding-right: 46px;
+}
+
+.dash-body {
+  display: flex;
+  height: 260px;
+}
+
+.dash-sidebar {
+  width: 50px;
+  background: rgba(0, 0, 0, .2);
+  padding: 16px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  border-right: 1px solid rgba(255, 255, 255, .05);
+}
+
+.dash-menu {
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, .1);
+}
+
+.dash-menu.active {
+  background: var(--orange);
+}
+
+.dash-content {
+  flex: 1;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.dash-cards {
+  display: flex;
+  gap: 12px;
+}
+
+.dash-card {
+  flex: 1;
+  background: rgba(255, 255, 255, .03);
+  border: 1px solid rgba(255, 255, 255, .05);
+  border-radius: 10px;
+  padding: 12px;
+}
+
+.dash-card span {
+  display: block;
+  font-size: .6rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.dash-card strong {
+  display: block;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #fff;
+  font-family: var(--font-display);
+}
+
+.dash-chart {
+  flex: 1;
+  background: rgba(255, 255, 255, .03);
+  border: 1px solid rgba(255, 255, 255, .05);
+  border-radius: 10px;
+  padding: 12px;
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+.dash-chart .bar {
+  flex: 1;
+  background: linear-gradient(0deg, rgba(255, 107, 43, .2), var(--orange));
+  border-radius: 3px 3px 0 0;
+}
+
+/* CELULAR (Frente sobreposta) */
+.comp-phone {
+  position: absolute;
+  z-index: 2;
+  right: 0;
+  bottom: -20px;
+  /* Gruda na direita e desce um pouco */
+  width: 220px;
+  background: var(--black-dark);
+  border-radius: 24px;
+  border: 1.5px solid rgba(255, 107, 43, .4);
+  box-shadow: -15px 20px 40px rgba(0, 0, 0, .6);
+  overflow: hidden;
+}
+
+.chat-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  background: var(--orange);
+}
+
+.chat-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .6rem;
+  font-weight: 800;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.chat-name {
+  font-size: .7rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 2px;
+}
+
+.chat-status {
+  font-size: .6rem;
+  color: rgba(255, 255, 255, .75);
+}
+
+.chat-messages {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.msg {
+  max-width: 85%;
+  padding: 8px 10px;
+  border-radius: 10px;
+  font-size: .68rem;
+  line-height: 1.4;
+}
+
+.msg.bot {
+  background: var(--black-mid);
+  border: 1px solid rgba(255, 255, 255, .06);
+  color: #fff;
+  align-self: flex-start;
+  border-radius: 4px 10px 10px 10px;
+}
+
+.msg.user {
+  background: var(--orange);
+  color: #fff;
+  align-self: flex-end;
+  border-radius: 10px 4px 10px 10px;
+}
+
+/* DICA DE SCROLL (Animação) */
+.scroll-hint {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted);
+  font-size: .65rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  z-index: 1;
+  animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+
+  50% {
+    transform: translateX(-50%) translateY(6px);
+  }
+}
+
+/* ================= RESPONSIVO ================= */
+@media (max-width: 1024px) {
+  .hero-container {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 60px;
+  }
+
+  .hero-description,
+  .hero-wavy {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-cta-group,
+  .hero-stats {
+    justify-content: center;
+  }
+
+  .hero-composition {
+    margin: 0 auto;
+    justify-content: center;
+    transform: scale(0.9);
+  }
+
+  .comp-phone {
+    right: 5%;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero {
+    padding: 120px 24px 60px;
+  }
+
+  .hero-composition {
+    min-height: 380px;
+    transform: scale(0.8);
+  }
+
+  .comp-phone {
+    right: -5%;
+    bottom: -40px;
+  }
+}
