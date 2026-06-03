@@ -43,78 +43,95 @@
     flex-wrap: wrap;
 }
 
+/* ================= CARD CTA VISUAL ================= */
 .cta-visual {
-    flex-shrink: 0;
+  flex-shrink: 0;
+  width: 100%;
+  max-width: 420px; /* Dá um tamanho ideal no desktop para os blocos respirarem */
+  margin: 0 auto;
 }
 
-.cta-card { 
-  background: var(--black); 
-  border: 1px solid rgba(255,107,43,.25); 
-  border-radius: var(--radius); 
-  padding: 28px 20px; /* Reduzi o padding lateral para telas menores */
-  width: 100%; 
-  max-width: 100%; /* Impede que ele cresça ou vaze do grid pai */
-  box-sizing: border-box; /* Garante que o padding não adicione largura extra */
-  margin: 0 auto; 
+.cta-card {
+  background: var(--black);
+  border: 1px solid rgba(255, 107, 43, 0.25);
+  border-radius: var(--radius);
+  padding: 32px; /* Mais respiro interno geral */
+  width: 100%;
+  box-sizing: border-box;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4); /* Sombra para destacar o card do fundo */
 }
 
 .cta-card-header {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 24px;
-    padding-bottom: 20px; /* Descomentado */
-    border-bottom: 1px solid rgba(255, 255, 255, .06); /* Descomentado */
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08); /* Linha divisória suave */
+  text-align: left; /* Garante que o texto fique à esquerda mesmo no mobile */
 }
 
 .cta-avatar {
-  width: 48px;
-  height: 48px;
-  border-radius: 12px;
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
   object-fit: cover;
   flex-shrink: 0;
-  box-shadow: 0 4px 12px rgba(255, 107, 43, 0.3);
+  box-shadow: 0 8px 24px rgba(255, 107, 43, 0.25); /* Brilho laranja sob a logo */
+  background: #fff; /* Fundo branco caso a sua imagem seja transparente */
 }
 
 .cta-card-title {
-    font-size: .9rem;
-    font-weight: 600;
-    color: #fff;
-    margin-bottom: 2px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 4px;
 }
 
 .cta-card-sub {
-    font-size: .75rem;
-    color: var(--muted);
+  font-size: 0.8rem;
+  color: var(--muted);
 }
 
-.cta-metrics { 
-  display: grid; 
-  grid-template-columns: repeat(3, 1fr); 
-  gap: 8px; /* Reduzi o gap para as métricas caberem perfeitamente */
+.cta-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px; /* Mais espaço entre os bloquinhos */
 }
-.cta-metric { 
-  text-align: center; 
-  background: rgba(255,107,43,.06); 
-  border-radius: 10px; 
-  padding: 14px 4px; 
-  word-wrap: break-word; /* Se o texto for muito grande, ele desce pra linha de baixo sem vazar */
+
+.cta-metric {
+  text-align: center;
+  background: rgba(255, 107, 43, 0.06);
+  border: 1px solid rgba(255, 107, 43, 0.05); /* Bordinha bem sutil */
+  border-radius: 12px;
+  padding: 16px 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: transform 0.3s ease;
 }
-.metric-value { 
-  display: block; 
-  font-family: var(--font-display); 
-  font-size: clamp(1rem, 4vw, 1.2rem); /* Tamanho de fonte fluido */
-  font-weight: 800; 
-  color: var(--orange); 
-  line-height: 1; 
-  margin-bottom: 4px; 
+
+.cta-metric:hover {
+  transform: translateY(-2px); /* Efeito suave ao passar o mouse */
 }
-.metric-label { 
-  display: block; 
-  font-size: .6rem; /* Fonte levemente reduzida para não quebrar layout */
-  color: var(--muted); 
-  text-transform: uppercase; 
-  letter-spacing: .06em; 
+
+.metric-value {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.25rem; /* Tamanho bom para ler os números */
+  font-weight: 800;
+  color: var(--orange);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.metric-label {
+  display: block;
+  font-size: 0.65rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
 }
 
 @media (max-width: 900px) {
