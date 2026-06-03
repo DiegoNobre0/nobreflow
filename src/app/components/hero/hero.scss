@@ -2,7 +2,7 @@
 .hero {
   background: var(--black);
   min-height: 100vh;
-  padding: 140px 60px 80px;
+  padding: 160px 60px 80px;
   display: flex;
   align-items: center;
   position: relative;
@@ -32,6 +32,7 @@
 }
 
 .hero-container {
+  padding-top: 1.5rem;
   position: relative;
   z-index: 1;
   width: 100%;
@@ -393,7 +394,7 @@
 /* ================= RESPONSIVO ================= */
 @media (max-width: 1024px) {
   .hero-container {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* Força 1 coluna apenas */
     text-align: center;
     gap: 60px;
   }
@@ -422,16 +423,49 @@
 
 @media (max-width: 600px) {
   .hero {
-    padding: 120px 24px 60px;
+    padding: 110px 16px 60px; /* Mantém o respiro lateral seguro */
+  }
+
+  .hero-intro h1 {
+    font-size: clamp(2rem, 12vw, 2rem); /* Diminui a fonte com segurança */
+    word-break: break-word; /* Mágica: Força a quebra de palavras muito longas */
+    line-height: 1.1;
+    padding-top: 0.5rem;
+  }
+
+  /* Deixa os botões empilhados e com 100% de largura (padrão de app) */
+  .hero-cta-group {
+    flex-direction: column;
+    width: 100%;
+  }
+  .hero-cta-group a {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hero-stats {
+    flex-wrap: wrap;
+    justify-content: center; /* Centraliza as estatísticas */
+    gap: 16px;
+  }
+
+  .stat-item h2 {
+    font-size: 1.8rem; /* Reduz o tamanho dos números */
+  }
+
+  .stat-divider {
+    display: none; 
   }
 
   .hero-composition {
-    min-height: 380px;
-    transform: scale(0.8);
+    min-height: 340px;
+    transform: scale(0.65); /* Reduz um pouco mais para caber em telas estreitas */
+    transform-origin: top center; 
+    margin-top: 20px;
   }
 
   .comp-phone {
-    right: -5%;
+    right: 0;
     bottom: -40px;
   }
 }

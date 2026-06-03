@@ -53,7 +53,7 @@
   border-radius: var(--radius); 
   padding: 28px 20px; /* Reduzi o padding lateral para telas menores */
   width: 100%; 
-  max-width: 320px; /* Impede que ele cresça ou vaze do grid pai */
+  max-width: 100%; /* Impede que ele cresça ou vaze do grid pai */
   box-sizing: border-box; /* Garante que o padding não adicione largura extra */
   margin: 0 auto; 
 }
@@ -63,8 +63,8 @@
     align-items: center;
     gap: 12px;
     margin-bottom: 24px;
-    // padding-bottom: 20px;
-    // border-bottom: 1px solid rgba(255, 255, 255, .06);
+    padding-bottom: 20px; /* Descomentado */
+    border-bottom: 1px solid rgba(255, 255, 255, .06); /* Descomentado */
 }
 
 .cta-avatar {
@@ -118,18 +118,48 @@
 }
 
 @media (max-width: 900px) {
-    .cta {
-        grid-template-columns: 1fr;
-        padding: 70px 24px;
-        gap: 40px;
-        text-align: center;
-    }
+  .cta {
+    grid-template-columns: 1fr;
+    padding: 70px 16px;
+    gap: 40px;
+    text-align: center;
+    overflow: hidden; /* Corta qualquer vazamento extra */
+  }
 
-    .cta-buttons {
-        justify-content: center;
-    }
+  .cta-text h2 {
+    font-size: clamp(1.8rem, 10vw, 2.5rem); /* Reduz o tamanho da fonte */
+    word-break: break-word; /* Força a quebra de TRANSFORMAR e ATENDIMENTO */
+  }
 
-    .cta-visual {
-        margin: 0 auto;
-    }
+  /* Deixa os botões empilhados e com 100% de largura */
+  .cta-buttons {
+    flex-direction: column;
+    width: 100%;
+    gap: 12px;
+  }
+  .cta-buttons a {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .cta-visual {
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .cta-card {
+    padding: 24px 16px; /* Reduz o padding interno do card */
+  }
+
+  .cta-metrics {
+    gap: 6px; /* Aproxima as métricas para não vazar o card */
+  }
+
+  .metric-value {
+    font-size: 1.1rem; /* Reduz os números R$200 e 100% */
+  }
+
+  .metric-label {
+    font-size: 0.55rem; /* Reduz a label inferior */
+  }
 }
