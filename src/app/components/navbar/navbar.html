@@ -1,7 +1,7 @@
 <nav [class.scrolled]="isScrolled">
   <div class="nav-logo">
   <a href="#home" (click)="scrollTo('home', $event)">
-    <img src="assets/logo2.png" alt="Nobreflow Automação Inteligente" class="logo-img">
+    <img src="assets/newlogo1.png" alt="Nobreflow Automação Inteligente" class="logo-img">
   </a>
 </div>
   
@@ -14,7 +14,7 @@
   
   <div class="nav-actions" [class.show]="isMenuOpen">
     <a href="#contact" (click)="scrollTo('contact', $event)" class="btn-outline">Falar Comigo</a>
-    <a href="/login" class="btn-primary">Área do Cliente</a>
+    <!-- <a href="/login" class="btn-primary">Área do Cliente</a> -->
   </div>
   
   <button class="hamburger" (click)="toggleMenu()" [class.active]="isMenuOpen" aria-label="Menu">

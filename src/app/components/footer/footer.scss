@@ -9,10 +9,16 @@ footer {
     gap: 20px;
 }
 
-.footer-logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+.nav-logo a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.logo-img {
+  height: 5rem; /* Ajuste esse valor se quiser a logo maior ou menor */
+  width: auto;
+  display: block;
+  border-radius: 4px; /* Suaviza levemente as bordas da imagem, opcional */
 }
 
 .footer-logo span {
