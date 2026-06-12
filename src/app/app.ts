@@ -7,15 +7,14 @@ import { TestimonialsComponent } from './components/testimonials/testimonials';
 import { PricingComponent } from './components/princing/princing';
 import { CtaComponent } from './components/cta/cta';
 import { Footer } from "./components/footer/footer";
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
-    NavbarComponent, HeroComponent, HowItWorksComponent,
-    FeaturesComponent, TestimonialsComponent, PricingComponent,
-    CtaComponent,
-    Footer
+  
+    RouterOutlet
 ],
   templateUrl: './app.html'
 })

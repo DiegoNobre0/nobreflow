@@ -8,6 +8,14 @@ export const routes: Routes = [
     component: Home,
     title: 'NobreFlow' // O Angular já altera o título da aba do navegador para você!
   },
-  // Futuramente, você adicionará outras rotas aqui embaixo, por exemplo:
-  // { path: 'dashboard', component: DashboardComponent }
+  // { path: 'login', component: LoginComponent },
+  // { 
+  //   path: 'painel', 
+  //   component: PainelLayoutComponent,
+  //   canActivate: [authGuard], // O segurança da porta
+  //   children: [
+  //     { path: '', component: DashboardComponent },
+  //     { path: 'locacoes', component: LocacoesListComponent }
+  //   ]
+  // }
 ];

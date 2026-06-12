@@ -6,6 +6,7 @@ import { HowItWorksComponent } from '../../components/how-it-works/how-it-works'
 import { TestimonialsComponent } from '../../components/testimonials/testimonials';
 import { PricingComponent } from '../../components/princing/princing';
 import {  CtaComponent } from '../../components/cta/cta';
+import { Footer } from '../../components/footer/footer';
 
 
 
@@ -14,13 +15,14 @@ import {  CtaComponent } from '../../components/cta/cta';
   standalone: true,
  
   imports: [
-    NavbarComponent,
+   NavbarComponent,
     HeroComponent,
-    FeaturesComponent,
     HowItWorksComponent,
+    FeaturesComponent,
     TestimonialsComponent,
     PricingComponent,
-    CtaComponent
+    CtaComponent,
+    Footer
   ],
   templateUrl: './home.html',
   styleUrls: ['./home.scss'] // se houver
