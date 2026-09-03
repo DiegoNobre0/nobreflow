@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
-import {NavbarComponent } from '../../components/navbar/navbar';
-import { HeroComponent } from '../../components/hero/hero';
-import { FeaturesComponent } from '../../components/features/features';
-import { HowItWorksComponent } from '../../components/how-it-works/how-it-works';
-import { TestimonialsComponent } from '../../components/testimonials/testimonials';
-import { PricingComponent } from '../../components/princing/princing';
-import {  CtaComponent } from '../../components/cta/cta';
-import { Footer } from '../../components/footer/footer';
+import { NavbarComponent } from '../../components/home/navbar/navbar';
+import { HeroComponent } from '../../components/home/hero/hero';
+import { PricingComponent } from '../../components/home/princing/princing';
+import { TestimonialsComponent } from '../../components/home/testimonials/testimonials';
+import { FeaturesComponent } from '../../components/home/features/features';
+import { HowItWorksComponent } from '../../components/home/how-it-works/how-it-works';
+import { CtaComponent } from '../../components/home/cta/cta';
+import { Footer } from '../../components/home/footer/footer';
+
 
 
 
