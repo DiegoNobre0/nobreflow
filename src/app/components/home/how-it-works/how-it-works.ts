@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ScrollRevealDirective } from '../../directives/scroll-reveal';
+import { ScrollRevealDirective } from '../../../directives/scroll-reveal';
 
 
 @Component({
@@ -9,4 +9,4 @@ import { ScrollRevealDirective } from '../../directives/scroll-reveal';
   templateUrl: './how-it-works.html',
   styleUrls: ['./how-it-works.scss']
 })
-export class HowItWorksComponent {}
+export class HowItWorksComponent { }

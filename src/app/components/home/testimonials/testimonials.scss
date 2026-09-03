@@ -79,3 +79,84 @@ blockquote {
     grid-template-columns: 1fr;
   }
 }
+
+.logo-marquee-container {
+  width: 100%;
+  overflow: hidden;
+  height: 10rem;
+  //margin: 4rem 0 2rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  // Suavização nas laterais
+  mask-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 1) 12%,
+    rgba(0, 0, 0, 1) 88%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 1) 12%,
+    rgba(0, 0, 0, 1) 88%,
+    rgba(0, 0, 0, 0) 100%
+  );
+
+  &:hover .logo-track {
+    animation-play-state: paused;
+  }
+}
+
+.logo-track {
+  display: flex;
+  width: max-content;
+  align-items: center;
+  gap: 2rem;
+  animation: scrollLogos 28s linear infinite;
+}
+
+.logo-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  height: 80px;
+  min-width: 160px;
+  padding: 10px 24px;
+  // background: rgba(255, 255, 255, 0.03); // Card sutil para uniformizar logos escuras e claras
+  // border: 1px solid rgba(255, 255, 255, 0.08);
+  // border-radius: 12px;
+  // transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+
+  img {
+    max-height: 10rem;
+    //max-width: 130px;
+    width: auto;
+    object-fit: contain;
+    opacity: 1; // Cor e nitidez 100%
+    filter: none; // Sem efeito cinza
+    transition: transform 0.25s ease;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    // background: rgba(255, 255, 255, 0.06);
+    // border-color: rgba(255, 107, 43, 0.4);
+
+    img {
+      transform: scale(1.06);
+    }
+  }
+}
+
+@keyframes scrollLogos {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
