@@ -20,7 +20,7 @@ type MetaWindow = Window & {
 export class TrackingConsentService {
   private readonly document = inject(DOCUMENT);
   private readonly storageKey = 'nobreflow-tracking-consent';
-  private readonly pixelId = '4084163915174045';
+  private readonly pixelId = '1401943651493151';
   private initialized = false;
 
   readonly consent = signal<TrackingConsent>('pending');
@@ -29,10 +29,7 @@ export class TrackingConsentService {
   initialize(): void {
     const preference = this.readPreference();
     this.consent.set(preference);
-
-    if (preference === 'accepted') {
-      this.loadPixel();
-    }
+    this.loadPixel(preference === 'accepted');
   }
 
   accept(): void {
@@ -43,13 +40,13 @@ export class TrackingConsentService {
 
     if (this.initialized) {
       this.metaWindow?.fbq?.('consent', 'grant');
-      if (previousPreference === 'rejected') {
+      if (previousPreference !== 'accepted') {
         this.metaWindow?.fbq?.('track', 'PageView');
       }
       return;
     }
 
-    this.loadPixel();
+    this.loadPixel(true);
   }
 
   reject(): void {
@@ -72,11 +69,11 @@ export class TrackingConsentService {
       return;
     }
 
-    this.loadPixel();
+    this.loadPixel(true);
     this.metaWindow?.fbq?.('track', 'Contact', { content_name: source });
   }
 
-  private loadPixel(): void {
+  private loadPixel(hasConsent: boolean): void {
     const window = this.metaWindow;
     if (!window || this.initialized) {
       return;
@@ -104,9 +101,16 @@ export class TrackingConsentService {
       this.document.head.appendChild(script);
     }
 
-    this.initialized = true;
+    if (!hasConsent) {
+      window.fbq?.('consent', 'revoke');
+    }
+
     window.fbq?.('init', this.pixelId);
-    window.fbq?.('track', 'PageView');
+    this.initialized = true;
+
+    if (hasConsent) {
+      window.fbq?.('track', 'PageView');
+    }
   }
 
   private readPreference(): TrackingConsent {
