@@ -6,7 +6,7 @@ export const routes: Routes = [
   {
     path: '', // O caminho vazio representa a raiz do site (localhost:4200/)
     component: Home,
-    title: 'NobreFlow' // O Angular já altera o título da aba do navegador para você!
+    title: 'NobreFlow | Sistemas, Sites e Automação para Empresas'
   },
   // { path: 'login', component: LoginComponent },
   // { 
