@@ -37,12 +37,23 @@ footer {
     gap: 24px;
 }
 
-.footer-links a {
+.footer-links a,
+.footer-links button {
     font-size: .8rem;
     transition: color var(--transition);
 }
 
-.footer-links a:hover {
+.footer-links button {
+    padding: 0;
+    color: inherit;
+    background: none;
+    border: 0;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.footer-links a:hover,
+.footer-links button:hover {
     color: var(--orange);
 }
 

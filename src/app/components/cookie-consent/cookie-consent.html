@@ -1,0 +1,41 @@
+@if (trackingConsent.consent() === 'pending') {
+  <aside class="cookie-banner" aria-label="Preferências de privacidade">
+    <div>
+      <strong>Sua privacidade importa</strong>
+      <p>Usamos cookies necessários para salvar suas preferências e, com sua autorização, o Meta Pixel para medir visitas e contatos.</p>
+      <button type="button" class="privacy-link" (click)="trackingConsent.openPolicy()">Ler Política de Privacidade</button>
+    </div>
+    <div class="cookie-actions">
+      <button type="button" class="btn-reject" (click)="trackingConsent.reject()">Recusar opcionais</button>
+      <button type="button" class="btn-accept" (click)="trackingConsent.accept()">Aceitar</button>
+    </div>
+  </aside>
+}
+
+@if (trackingConsent.policyOpen()) {
+  <div class="privacy-backdrop" (click)="trackingConsent.closePolicy()">
+    <section class="privacy-modal" role="dialog" aria-modal="true" aria-labelledby="privacy-title" (click)="$event.stopPropagation()">
+      <button type="button" class="modal-close" aria-label="Fechar política de privacidade" (click)="trackingConsent.closePolicy()">×</button>
+      <span class="section-tag">LGPD</span>
+      <h2 id="privacy-title">Política de Privacidade</h2>
+      <p>A Nobreflow respeita sua privacidade e trata seus dados de acordo com a Lei Geral de Proteção de Dados (Lei nº 13.709/2018).</p>
+
+      <h3>Quais dados utilizamos</h3>
+      <p>Ao navegar, podemos receber dados técnicos como endereço IP, navegador, páginas acessadas e interações. Quando você inicia uma conversa no WhatsApp, os dados enviados são tratados também conforme as políticas do WhatsApp.</p>
+
+      <h3>Por que utilizamos esses dados</h3>
+      <p>Usamos os dados para manter o site funcionando, responder solicitações, melhorar nossos serviços e, somente com seu consentimento, medir visitas e contatos por meio do Meta Pixel.</p>
+
+      <h3>Cookies e compartilhamento</h3>
+      <p>O armazenamento necessário registra sua escolha de privacidade. O Meta Pixel é opcional e pode compartilhar dados de navegação com a Meta para mensuração. Ele só é carregado após sua autorização.</p>
+
+      <h3>Seus direitos</h3>
+      <p>Você pode solicitar confirmação, acesso, correção ou exclusão dos seus dados, além de revogar seu consentimento. Para exercer seus direitos, fale conosco pelo WhatsApp.</p>
+
+      <div class="policy-actions">
+        <button type="button" class="btn-reject" (click)="trackingConsent.reject()">Somente necessários</button>
+        <button type="button" class="btn-accept" (click)="trackingConsent.accept()">Aceitar análise</button>
+      </div>
+    </section>
+  </div>
+}
