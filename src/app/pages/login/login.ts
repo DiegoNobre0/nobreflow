@@ -2,18 +2,20 @@ import { Component, signal, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { finalize } from 'rxjs';
+import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  // Se você tiver o módulo de ícones (Lucide), importe aqui também
-  imports: [CommonModule, ReactiveFormsModule], 
+  imports: [CommonModule, ReactiveFormsModule, RouterLink],
   templateUrl: './login.html',
   styleUrls: ['./login.scss']
 })
 export class LoginComponent {
   private fb = inject(FormBuilder);
   private router = inject(Router);
+  private authService = inject(AuthService);
 
   // Sinais (Signals) para controlar a tela como o seu HTML pediu
   isLoading = signal<boolean>(false);
@@ -31,19 +33,18 @@ export class LoginComponent {
     this.isLoading.set(true);
     this.errorMessage.set(null);
 
-    const { email, password } = this.loginForm.value;
+    const { email, password } = this.loginForm.getRawValue();
+    if (!email || !password) return;
 
-    // TODO: Aqui vamos conectar com o seu AuthService que chama a API do Fastify.
-    // Por enquanto, vamos simular um login:
-    setTimeout(() => {
-      if (email === 'teste@teste.com.br' && password === '12345678') {
-        // Simula o sucesso e vai para o painel
-        this.router.navigate(['/painel']);
-      } else {
-        // Simula o erro
-        this.errorMessage.set('E-mail ou senha incorretos. Tente novamente.');
-        this.isLoading.set(false);
-      }
-    }, 1500);
+    this.authService.login(email, password).pipe(
+      finalize(() => this.isLoading.set(false)),
+    ).subscribe({
+      next: () => void this.router.navigate(['/painel']),
+      error: (error) => {
+        this.errorMessage.set(
+          error.error?.message ?? 'Não foi possível entrar. Verifique os dados e tente novamente.',
+        );
+      },
+    });
   }
 }

@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ScrollRevealDirective } from '../../../directives/scroll-reveal';
+import { OperationDiagnosisService } from '../../../core/services/operation-diagnosis';
 
 
 @Component({
@@ -9,4 +10,10 @@ import { ScrollRevealDirective } from '../../../directives/scroll-reveal';
   templateUrl: './cta.html',
   styleUrls: ['./cta.scss']
 })
-export class CtaComponent {}
+export class CtaComponent {
+  private readonly diagnosis = inject(OperationDiagnosisService);
+
+  openDiagnosis(): void {
+    this.diagnosis.open('CTA final');
+  }
+}

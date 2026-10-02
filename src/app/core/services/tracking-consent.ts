@@ -2,6 +2,7 @@ import { DOCUMENT } from '@angular/common';
 import { inject, Injectable, signal } from '@angular/core';
 
 export type TrackingConsent = 'accepted' | 'rejected' | 'pending';
+export type QualificationEvent = 'QualificationStarted' | 'QualificationCompleted';
 
 type MetaPixel = ((...args: unknown[]) => void) & {
   callMethod?: (...args: unknown[]) => void;
@@ -29,7 +30,9 @@ export class TrackingConsentService {
   initialize(): void {
     const preference = this.readPreference();
     this.consent.set(preference);
-    this.loadPixel(preference === 'accepted');
+    if (preference === 'accepted') {
+      this.loadPixel(true);
+    }
   }
 
   accept(): void {
@@ -71,6 +74,15 @@ export class TrackingConsentService {
 
     this.loadPixel(true);
     this.metaWindow?.fbq?.('track', 'Contact', { content_name: source });
+  }
+
+  trackQualification(event: QualificationEvent, source: string): void {
+    if (this.consent() !== 'accepted') {
+      return;
+    }
+
+    this.loadPixel(true);
+    this.metaWindow?.fbq?.('trackCustom', event, { content_name: source });
   }
 
   private loadPixel(hasConsent: boolean): void {

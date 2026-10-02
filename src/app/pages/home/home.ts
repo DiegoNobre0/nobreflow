@@ -7,6 +7,7 @@ import { FeaturesComponent } from '../../components/home/features/features';
 import { HowItWorksComponent } from '../../components/home/how-it-works/how-it-works';
 import { CtaComponent } from '../../components/home/cta/cta';
 import { Footer } from '../../components/home/footer/footer';
+import { OperationDiagnosisComponent } from '../../components/home/operation-diagnosis/operation-diagnosis';
 
 
 
@@ -23,11 +24,10 @@ import { Footer } from '../../components/home/footer/footer';
     TestimonialsComponent,
     PricingComponent,
     CtaComponent,
-    Footer
+    Footer,
+    OperationDiagnosisComponent
   ],
   templateUrl: './home.html',
   styleUrls: ['./home.scss'] // se houver
 })
-export class Home { 
-  // Lógica do componente home
-}
+export class Home {}

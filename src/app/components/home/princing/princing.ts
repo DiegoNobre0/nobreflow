@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ScrollRevealDirective } from '../../../directives/scroll-reveal';
+import { OperationDiagnosisService } from '../../../core/services/operation-diagnosis';
 
 @Component({
   selector: 'app-pricing',
@@ -8,4 +9,10 @@ import { ScrollRevealDirective } from '../../../directives/scroll-reveal';
   templateUrl: './princing.html',
   styleUrls: ['./princing.scss']
 })
-export class PricingComponent {}
+export class PricingComponent {
+  private readonly diagnosis = inject(OperationDiagnosisService);
+
+  openDiagnosis(): void {
+    this.diagnosis.open('Planos');
+  }
+}

@@ -56,7 +56,7 @@
 
 .hero-intro h1 {
   font-family: var(--font-display);
-  font-size: clamp(2.8rem, 5vw, 5rem);
+  font-size: clamp(2.45rem, 4.2vw, 4.3rem);
   font-weight: 800;
   line-height: .95;
   text-transform: uppercase;
@@ -94,35 +94,33 @@
   margin-top: 32px;
 }
 
-/* Status */
-.hero-stats {
+/* Áreas integradas */
+.operation-list {
   display: flex;
-  gap: 24px;
-  margin-top: 48px;
-  text-align: left;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  margin-top: 34px;
   align-items: center;
 }
 
-.stat-item p {
-  font-size: .7rem;
-  color: var(--muted);
+.operation-list span {
+  position: relative;
+  color: rgba(255, 255, 255, .6);
+  font-size: .72rem;
+  font-weight: 500;
+  letter-spacing: .05em;
   text-transform: uppercase;
-  letter-spacing: .08em;
-  margin-bottom: 4px;
 }
 
-.stat-item h2 {
-  font-family: var(--font-display);
-  font-size: 2.2rem;
-  font-weight: 800;
-  line-height: 1;
-  color: var(--orange);
-}
-
-.stat-divider {
-  width: 1px;
-  height: 30px;
-  background: rgba(255, 107, 43, .2);
+.operation-list span:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: -11px;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--orange);
 }
 
 /* ================= COMPOSIÇÃO VISUAL (DIREITA) ================= */
@@ -209,7 +207,7 @@
   }
 
   .hero-cta-group,
-  .hero-stats {
+  .operation-list {
     justify-content: center;
   }
 
@@ -247,23 +245,15 @@
     width: 100%;
   }
 
-  .hero-cta-group a {
+  .hero-cta-group a,
+  .hero-cta-group button {
     width: 100%;
     justify-content: center;
   }
 
-  .hero-stats {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 16px;
-  }
-
-  .stat-item h2 {
-    font-size: 1.8rem;
-  }
-
-  .stat-divider {
-    display: none;
+  .operation-list {
+    gap: 8px 16px;
+    margin-top: 28px;
   }
 
   .hero-composition {

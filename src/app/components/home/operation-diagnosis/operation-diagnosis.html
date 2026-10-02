@@ -1,0 +1,68 @@
+@if (diagnosis.isOpen()) {
+  <div class="diagnosis-backdrop" (click)="closeFromBackdrop($event)">
+    <section
+      #dialog
+      class="diagnosis-dialog"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="diagnosis-title"
+      tabindex="-1"
+    >
+      <button type="button" class="close-button" aria-label="Fechar diagnóstico" (click)="close()">&times;</button>
+
+      @if (step < questions.length) {
+        <header class="diagnosis-header">
+          <div class="eyebrow-row">
+            <span>Diagnóstico rápido</span>
+            <span>{{ step + 1 }} de {{ questions.length }}</span>
+          </div>
+          <div class="progress" aria-hidden="true">
+            <span [style.width.%]="((step + 1) / questions.length) * 100"></span>
+          </div>
+          <h2 id="diagnosis-title">{{ currentQuestion.title }}</h2>
+          <p>{{ currentQuestion.hint }}</p>
+        </header>
+
+        <div class="option-grid">
+          @for (option of currentQuestion.options; track option.value) {
+            <button
+              type="button"
+              class="option-button"
+              [class.selected]="form.controls[currentQuestion.key].value === option.value"
+              (click)="selectAnswer(currentQuestion, option.value)"
+            >
+              <span>{{ option.label }}</span>
+              <span class="option-arrow" aria-hidden="true">→</span>
+            </button>
+          }
+        </div>
+
+        <footer class="diagnosis-footer">
+          @if (step > 0) {
+            <button type="button" class="back-button" (click)="back()">← Voltar</button>
+          }
+          <span>Leva menos de 1 minuto</span>
+        </footer>
+      } @else {
+        <div class="diagnosis-result">
+          <span class="result-icon" aria-hidden="true">✓</span>
+          <p class="result-tag">Análise inicial pronta</p>
+          <h2 id="diagnosis-title">Já identificamos algumas possibilidades para sua operação.</h2>
+          <p>Envie suas respostas pelo WhatsApp e nossa equipe mostrará o que pode ser simplificado primeiro.</p>
+          <a
+            class="btn-primary result-cta"
+            [href]="whatsappUrl()"
+            target="_blank"
+            rel="noopener noreferrer"
+            [attr.data-pixel-source]="diagnosis.source()"
+            (click)="close()"
+          >
+            Receber minha análise
+            <span aria-hidden="true">→</span>
+          </a>
+          <button type="button" class="back-button result-back" (click)="back()">← Revisar respostas</button>
+        </div>
+      }
+    </section>
+  </div>
+}

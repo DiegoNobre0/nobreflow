@@ -5,17 +5,22 @@ import { Directive, ElementRef, OnInit, Renderer2, OnDestroy } from '@angular/co
   standalone: true
 })
 export class ScrollRevealDirective implements OnInit, OnDestroy {
-  private observer!: IntersectionObserver;
+  private observer?: IntersectionObserver;
 
   constructor(private el: ElementRef, private renderer: Renderer2) { }
 
   ngOnInit() {
     this.renderer.addClass(this.el.nativeElement, 'reveal');
+    if (typeof IntersectionObserver === 'undefined') {
+      this.renderer.addClass(this.el.nativeElement, 'visible');
+      return;
+    }
+
     this.observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           this.renderer.addClass(this.el.nativeElement, 'visible');
-          this.observer.unobserve(this.el.nativeElement);
+          this.observer?.unobserve(this.el.nativeElement);
         }
       });
     }, { threshold: 0.1 });

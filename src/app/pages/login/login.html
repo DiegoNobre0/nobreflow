@@ -1,1 +1,33 @@
-<p>login works!</p>
+<main class="login-page">
+  <a routerLink="/" class="brand" aria-label="Voltar para a página inicial">
+    <img src="assets/newlogo1.png" alt="Nobreflow">
+  </a>
+
+  <section class="login-card">
+    <div class="eyebrow">Central financeira</div>
+    <h1>Controle suas cobranças em um só lugar.</h1>
+    <p class="intro">Entre para cadastrar clientes, acompanhar pagamentos e automatizar os avisos pelo WhatsApp.</p>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <label for="email">E-mail</label>
+      <input id="email" type="email" formControlName="email" autocomplete="email" placeholder="voce@empresa.com.br">
+      @if (loginForm.controls.email.touched && loginForm.controls.email.invalid) {
+        <small>Informe um e-mail válido.</small>
+      }
+
+      <label for="password">Senha</label>
+      <input id="password" type="password" formControlName="password" autocomplete="current-password" placeholder="Sua senha">
+      @if (loginForm.controls.password.touched && loginForm.controls.password.invalid) {
+        <small>A senha precisa ter pelo menos 6 caracteres.</small>
+      }
+
+      @if (errorMessage()) {
+        <div class="form-error" role="alert">{{ errorMessage() }}</div>
+      }
+
+      <button class="btn-primary" type="submit" [disabled]="loginForm.invalid || isLoading()">
+        {{ isLoading() ? 'Entrando...' : 'Entrar no painel' }}
+      </button>
+    </form>
+  </section>
+</main>
