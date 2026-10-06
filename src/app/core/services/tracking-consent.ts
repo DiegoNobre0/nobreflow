@@ -21,7 +21,7 @@ type MetaWindow = Window & {
 export class TrackingConsentService {
   private readonly document = inject(DOCUMENT);
   private readonly storageKey = 'nobreflow-tracking-consent';
-  private readonly pixelId = '1401943651493151';
+  private readonly pixelId = '1596364914664593';
   private initialized = false;
 
   readonly consent = signal<TrackingConsent>('pending');
