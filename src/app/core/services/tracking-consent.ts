@@ -74,6 +74,16 @@ export class TrackingConsentService {
 
     this.loadPixel(true);
     this.metaWindow?.fbq?.('track', 'Contact', { content_name: source });
+    this.metaWindow?.fbq?.('track', 'Lead', { content_name: source });
+  }
+
+  trackLead(source: string): void {
+    if (this.consent() !== 'accepted') {
+      return;
+    }
+
+    this.loadPixel(true);
+    this.metaWindow?.fbq?.('track', 'Lead', { content_name: source });
   }
 
   trackQualification(event: QualificationEvent, source: string): void {
