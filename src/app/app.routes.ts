@@ -12,6 +12,12 @@ export const routes: Routes = [
   },
   { path: 'login', component: LoginComponent, title: 'Entrar | Nobreflow' },
   {
+    path: 'connect/whatsapp/:sessionId',
+    loadComponent: () => import('./pages/connect/whatsapp-connect/whatsapp-connect')
+      .then((module) => module.WhatsAppConnectComponent),
+    title: 'Conectar WhatsApp | Nobreflow',
+  },
+  {
     path: 'painel',
     canActivate: [authGuard],
     loadComponent: () => import('./pages/panel/panel').then((module) => module.PanelComponent),

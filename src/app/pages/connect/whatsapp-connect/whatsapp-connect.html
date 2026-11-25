@@ -1,0 +1,152 @@
+<main class="connector-page">
+  <header class="connector-header">
+    <a href="/" class="brand" aria-label="Nobreflow - página inicial">
+      <img src="assets/newlogo1.png" alt="Nobreflow">
+    </a>
+    <div class="secure-label">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10V8a5 5 0 0 1 10 0v2m-11 0h12v10H6V10Zm6 4v2"/></svg>
+      Sessão segura
+    </div>
+  </header>
+
+  <div class="connector-layout">
+    <section class="connector-copy" aria-labelledby="connector-title">
+      <div class="eyebrow"><span></span> Conector oficial WhatsApp</div>
+      <h1 id="connector-title">Conecte sua operação <em>com segurança.</em></h1>
+      <p class="lead">
+        Autorize a integração de <strong>{{ installationName() }}</strong> diretamente pelo ambiente oficial da Meta.
+      </p>
+
+      <div class="security-note">
+        <div class="shield-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M12 3 5 6v5c0 4.6 2.9 8.2 7 10 4.1-1.8 7-5.4 7-10V6l-7-3Z"/><path d="m9 12 2 2 4-4"/></svg>
+        </div>
+        <div>
+          <strong>Suas credenciais continuam privadas</strong>
+          <p>A senha é informada somente ao Facebook. A Nobreflow recebe apenas a autorização necessária para concluir esta instalação.</p>
+        </div>
+      </div>
+
+      <div class="requirements">
+        <p class="requirements-title">Antes de começar, confirme:</p>
+        <ul>
+          <li><span aria-hidden="true">✓</span> Você é administrador do negócio no Facebook</li>
+          <li><span aria-hidden="true">✓</span> O WhatsApp Business está atualizado no celular</li>
+          <li><span aria-hidden="true">✓</span> O telefone com o número está por perto</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="connection-card" aria-live="polite">
+      <div class="card-topline">
+        <span>Etapa única</span>
+        @if (expirationLabel() && pageState() !== 'expired') {
+          <span class="expiry">Válido até {{ expirationLabel() }}</span>
+        }
+      </div>
+
+      @switch (pageState()) {
+        @case ('loading') {
+          <div class="state-content centered">
+            <div class="spinner" aria-hidden="true"></div>
+            <h2>Preparando conexão</h2>
+            <p>Validando seu acesso seguro e carregando o ambiente do Facebook.</p>
+          </div>
+        }
+        @case ('ready') {
+          <div class="state-content">
+            <div class="status-icon ready-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z"/><path d="m8.5 12 2.3 2.3 4.8-5"/></svg>
+            </div>
+            <span class="status-kicker">Pronto para começar</span>
+            <h2>Autorize pelo Facebook</h2>
+            <p>Uma janela segura será aberta para você escolher o negócio e o número do WhatsApp.</p>
+            <div class="installation-row">
+              <span>Instalação</span>
+              <strong>{{ installationName() }}</strong>
+            </div>
+            <button type="button" class="facebook-button" (click)="connect()">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12.1C22 6.5 17.5 2 12 2S2 6.5 2 12.1c0 5 3.7 9.1 8.4 9.9v-7H7.9v-2.9h2.5V9.9c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.3.2 2.3.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6v1.9h2.8l-.4 2.9h-2.3v7c4.7-.8 8.3-4.9 8.3-10Z"/></svg>
+              Continuar com Facebook
+            </button>
+            <small>Ao continuar, você será direcionado ao fluxo oficial da Meta.</small>
+          </div>
+        }
+        @case ('connecting') {
+          <div class="state-content centered">
+            <div class="spinner" aria-hidden="true"></div>
+            <span class="status-kicker">Janela do Facebook aberta</span>
+            <h2>Conclua as etapas</h2>
+            <p>Escolha sua empresa e siga as instruções. Não feche esta página enquanto conecta.</p>
+          </div>
+        }
+        @case ('completing') {
+          <div class="state-content centered">
+            <div class="spinner" aria-hidden="true"></div>
+            <span class="status-kicker">Autorização recebida</span>
+            <h2>Finalizando conexão</h2>
+            <p>Estamos confirmando os dados da instalação. Isso leva apenas alguns segundos.</p>
+          </div>
+        }
+        @case ('success') {
+          <div class="state-content centered">
+            <div class="status-icon success-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z"/><path d="m8 12 2.7 2.7L16 9.5"/></svg>
+            </div>
+            <span class="status-kicker">Tudo certo</span>
+            <h2>WhatsApp conectado</h2>
+            <p>A instalação foi autorizada. Você será redirecionado automaticamente.</p>
+          </div>
+        }
+        @case ('cancelled') {
+          <div class="state-content centered">
+            <div class="status-icon neutral-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z"/><path d="M12 8v5m0 3h.01"/></svg>
+            </div>
+            <span class="status-kicker">Conexão cancelada</span>
+            <h2>Nada foi alterado</h2>
+            <p>Você pode reiniciar o processo enquanto esta sessão estiver válida.</p>
+            <button type="button" class="secondary-button" (click)="retryConnection()">Tentar novamente</button>
+          </div>
+        }
+        @case ('expired') {
+          <div class="state-content centered">
+            <div class="status-icon error-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z"/><path d="M12 7v5m0 4h.01"/></svg>
+            </div>
+            <span class="status-kicker">Acesso encerrado</span>
+            <h2>Este link expirou</h2>
+            <p>Por segurança, links de conexão têm duração limitada. Solicite um novo link a quem iniciou a instalação.</p>
+          </div>
+        }
+        @case ('error') {
+          <div class="state-content centered">
+            <div class="status-icon error-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z"/><path d="M12 7v5m0 4h.01"/></svg>
+            </div>
+            <span class="status-kicker">Não concluído</span>
+            <h2>{{ errorTitle() }}</h2>
+            <p>{{ errorMessage() }}</p>
+            <button type="button" class="secondary-button" (click)="retryConnection()">Tentar novamente</button>
+          </div>
+        }
+        @case ('terminal-error') {
+          <div class="state-content centered">
+            <div class="status-icon error-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z"/><path d="M12 7v5m0 4h.01"/></svg>
+            </div>
+            <span class="status-kicker">Não concluído</span>
+            <h2>{{ errorTitle() }}</h2>
+            <p>{{ errorMessage() }}</p>
+            <small>Solicite um novo link à instalação que iniciou a conexão.</small>
+          </div>
+        }
+      }
+    </section>
+  </div>
+
+  <footer class="connector-footer">
+    <span><i></i> Conexão protegida</span>
+    <p>Nobreflow × WhatsApp Business</p>
+  </footer>
+</main>

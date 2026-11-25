@@ -30,7 +30,7 @@ export class TrackingConsentService {
   initialize(): void {
     const preference = this.readPreference();
     this.consent.set(preference);
-    if (preference === 'accepted') {
+    if (preference === 'accepted' && this.trackingAllowed) {
       this.loadPixel(true);
     }
   }
@@ -96,6 +96,7 @@ export class TrackingConsentService {
   }
 
   private loadPixel(hasConsent: boolean): void {
+    if (!this.trackingAllowed) return;
     const window = this.metaWindow;
     if (!window || this.initialized) {
       return;
@@ -154,5 +155,9 @@ export class TrackingConsentService {
 
   private get metaWindow(): MetaWindow | null {
     return this.document.defaultView as MetaWindow | null;
+  }
+
+  private get trackingAllowed(): boolean {
+    return !this.metaWindow?.location.pathname.startsWith('/connect/whatsapp/');
   }
 }
