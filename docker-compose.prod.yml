@@ -1,0 +1,38 @@
+name: nobreflow-frontend-stack
+
+networks:
+  rede-central:
+    external: true
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: nobreflow-frontend-img
+    container_name: nobreflow-frontend
+    restart: unless-stopped
+    networks:
+      - rede-central
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost/container-health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    labels:
+      - "projeto=nobreflow"
+      - "tipo=frontend"
+      - "ambiente=producao"
+      - "traefik.enable=true"
+      - "traefik.docker.network=rede-central"
+      - "traefik.http.routers.nobreflow-frontend.rule=Host(`nobreflow.com.br`) || Host(`www.nobreflow.com.br`) || Host(`connect.nobreflow.com.br`)"
+      - "traefik.http.routers.nobreflow-frontend.entrypoints=websecure"
+      - "traefik.http.routers.nobreflow-frontend.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.nobreflow-frontend.service=nobreflow-frontend"
+      - "traefik.http.routers.nobreflow-frontend-http.rule=Host(`nobreflow.com.br`) || Host(`www.nobreflow.com.br`) || Host(`connect.nobreflow.com.br`)"
+      - "traefik.http.routers.nobreflow-frontend-http.entrypoints=web"
+      - "traefik.http.routers.nobreflow-frontend-http.middlewares=nobreflow-frontend-https-redirect"
+      - "traefik.http.routers.nobreflow-frontend-http.service=nobreflow-frontend"
+      - "traefik.http.middlewares.nobreflow-frontend-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.middlewares.nobreflow-frontend-https-redirect.redirectscheme.permanent=true"
+      - "traefik.http.services.nobreflow-frontend.loadbalancer.server.port=80"
