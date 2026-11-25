@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://nobreflow.vercel.app/sitemap.xml
+Sitemap: https://nobreflow.com.br/sitemap.xml
